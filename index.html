@@ -6,42 +6,71 @@
 <meta name="description" content="Safe and professional download site">
 <title>Safe Download Hub</title>
 <style>
+  /* Background video */
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  /* Dark overlay for readability */
+  body::before {
+    content: "";
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+  }
+
   body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #fff;
   }
   header {
-    background-color: #2d3748;
+    background-color: rgba(45,55,72,0.8);
     color: white;
     padding: 20px;
     width: 100%;
     text-align: center;
+    border-radius: 0 0 15px 15px;
+    z-index: 1;
   }
   main {
     max-width: 900px;
     width: 90%;
     padding: 20px;
+    z-index: 1;
+    position: relative;
   }
   h1, h2 {
     margin-bottom: 10px;
   }
   .info {
-    background-color: #e2e8f0;
+    background-color: rgba(226,232,240,0.85);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
+    color: #000;
   }
   .download-list {
     list-style: none;
     padding: 0;
   }
   .download-list li {
-    background-color: #ffffff;
+    background-color: rgba(255,255,255,0.9);
     margin: 10px 0;
     padding: 15px;
     border-radius: 8px;
@@ -65,18 +94,20 @@
     transform: scale(1.05);
   }
 
-  /* Sliding description panel */
+  /* Sliding info box from the left */
   .description {
     position: absolute;
     top: 50%;
-    left: 110%;
+    right: 110%;
     transform: translateY(-50%) scaleX(0);
-    transform-origin: left;
+    transform-origin: right;
     background-color: #2d3748;
     color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    white-space: nowrap;
+    padding: 12px 18px;
+    border-radius: 6px;
+    white-space: normal;
+    max-width: 220px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     opacity: 0;
     pointer-events: none;
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -84,18 +115,27 @@
     z-index: 10;
   }
   .download-list li:hover .description {
-    transform: translateY(-50%) scaleX(1); /* slide open horizontally */
+    transform: translateY(-50%) scaleX(1);
     opacity: 1;
   }
+
   footer {
     text-align: center;
     padding: 15px;
     font-size: 14px;
-    color: #555;
+    color: #fff;
+    z-index: 1;
+    position: relative;
   }
 </style>
 </head>
 <body>
+  <!-- Background video hosted in your GitHub repo -->
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
 <header>
   <h1>Safe Download Hub</h1>
   <p>Your professional and secure download portal</p>
@@ -110,17 +150,29 @@
     <li>
       File 1.zip
       <a href="https://example.com/file1.zip" target="_blank">Download</a>
-      <div class="description">Compressed archive of File 1, 20MB. Contains documents and images.</div>
+      <div class="description">
+        <strong>File 1.zip</strong><br>
+        Compressed archive of File 1, 20MB.<br>
+        Contains documents and images.
+      </div>
     </li>
     <li>
       File 2.pdf
       <a href="https://example.com/file2.pdf" target="_blank">Download</a>
-      <div class="description">PDF guide for File 2, 5 pages. Includes installation instructions.</div>
+      <div class="description">
+        <strong>File 2.pdf</strong><br>
+        PDF guide for File 2, 5 pages.<br>
+        Includes installation instructions.
+      </div>
     </li>
     <li>
       File 3.png
       <a href="https://example.com/file3.png" target="_blank">Download</a>
-      <div class="description">High-resolution image, 3MB. Perfect for presentations.</div>
+      <div class="description">
+        <strong>File 3.png</strong><br>
+        High-resolution image, 3MB.<br>
+        Perfect for presentations.
+      </div>
     </li>
   </ul>
 </main>
