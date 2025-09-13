@@ -18,6 +18,11 @@
     pointer-events: none;
   }
 
+  /* Background sound overlay (silent for now, can play) */
+  audio#bg-audio {
+    display: none;
+  }
+
   /* Dark overlay for readability */
   body::before {
     content: "";
@@ -39,6 +44,7 @@
     align-items: center;
     color: #fff;
   }
+
   header {
     background-color: rgba(45,55,72,0.8);
     color: white;
@@ -48,6 +54,7 @@
     border-radius: 0 0 15px 15px;
     z-index: 1;
   }
+
   main {
     max-width: 900px;
     width: 90%;
@@ -55,9 +62,11 @@
     z-index: 1;
     position: relative;
   }
+
   h1, h2 {
     margin-bottom: 10px;
   }
+
   .info {
     background-color: rgba(226,232,240,0.85);
     padding: 15px;
@@ -65,10 +74,12 @@
     margin-bottom: 20px;
     color: #000;
   }
+
   .download-list {
     list-style: none;
     padding: 0;
   }
+
   .download-list li {
     background-color: rgba(255,255,255,0.9);
     margin: 10px 0;
@@ -80,16 +91,19 @@
     align-items: center;
     position: relative;
   }
+
   .download-list a {
     text-decoration: none;
     color: #2b6cb0;
     font-weight: bold;
     padding: 8px 15px;
     border-radius: 5px;
+    background-color: rgba(255,255,255,0.2); /* 20% transparent */
     transition: background 0.3s ease, transform 0.2s ease;
   }
+
   .download-list a:hover {
-    background-color: #2b6cb0;
+    background-color: rgba(43,108,176,0.9);
     color: white;
     transform: scale(1.05);
   }
@@ -114,9 +128,16 @@
     font-size: 14px;
     z-index: 10;
   }
+
   .download-list li:hover .description {
     transform: translateY(-50%) scaleX(1);
     opacity: 1;
+  }
+
+  /* Make file text black */
+  .download-list li {
+    color: black;
+    font-weight: bold;
   }
 
   footer {
@@ -130,21 +151,29 @@
 </style>
 </head>
 <body>
-  <!-- Background video in the same folder -->
+  <!-- Background video -->
   <video autoplay muted loop id="bg-video">
     <source src="raindrops.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
+  <!-- Background audio -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="raindrops.mp3" type="audio/mp3">
+    Your browser does not support audio.
+  </audio>
+
 <header>
   <h1>Safe Download Hub</h1>
   <p>Your professional and secure download portal</p>
 </header>
+
 <main>
   <div class="info">
     <h2>Welcome!</h2>
     <p>All files here are safe to download. Hover over the download buttons to see a description of each file!</p>
   </div>
+
   <h2>Available Files</h2>
   <ul class="download-list">
     <li>
@@ -176,6 +205,7 @@
     </li>
   </ul>
 </main>
+
 <footer>
   &copy; 2025 Safe Download Hub • Hosted securely via GitHub Pages / Cloudflare Pages
 </footer>
