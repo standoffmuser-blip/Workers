@@ -16,11 +16,7 @@
     object-fit: cover;
     z-index: -2;
     pointer-events: none;
-  }
-
-  /* Background sound overlay (silent for now, can play) */
-  audio#bg-audio {
-    display: none;
+    filter: brightness(0.7); /* darken video for better readability */
   }
 
   /* Dark overlay for readability */
@@ -31,7 +27,7 @@
     left:0;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.3);
     z-index: -1;
   }
 
@@ -73,6 +69,7 @@
     border-radius: 8px;
     margin-bottom: 20px;
     color: #000;
+    backdrop-filter: blur(5px); /* subtle blur behind info */
   }
 
   .download-list {
@@ -81,7 +78,7 @@
   }
 
   .download-list li {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.85); /* semi-transparent white */
     margin: 10px 0;
     padding: 15px;
     border-radius: 8px;
@@ -90,20 +87,22 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    color: black; /* text black */
+    backdrop-filter: blur(3px); /* subtle blur behind each box */
   }
 
   .download-list a {
     text-decoration: none;
-    color: #2b6cb0;
+    background-color: rgba(43,108,176,0.2); /* semi-transparent button */
+    color: black; /* link text black */
     font-weight: bold;
     padding: 8px 15px;
     border-radius: 5px;
-    background-color: rgba(255,255,255,0.2); /* 20% transparent */
     transition: background 0.3s ease, transform 0.2s ease;
   }
 
   .download-list a:hover {
-    background-color: rgba(43,108,176,0.9);
+    background-color: rgba(43,108,176,0.9); /* hover highlight */
     color: white;
     transform: scale(1.05);
   }
@@ -134,12 +133,6 @@
     opacity: 1;
   }
 
-  /* Make file text black */
-  .download-list li {
-    color: black;
-    font-weight: bold;
-  }
-
   footer {
     text-align: center;
     padding: 15px;
@@ -157,8 +150,8 @@
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Background audio -->
-  <audio id="bg-audio" autoplay loop>
+  <!-- Background audio (muted for autoplay compliance) -->
+  <audio id="bg-audio" autoplay loop muted>
     <source src="raindrops.mp3" type="audio/mp3">
     Your browser does not support audio.
   </audio>
